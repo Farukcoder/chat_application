@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Models\User;
+use App\Models\Phone;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +16,13 @@ use App\Http\Controllers\StudentController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+//    $phone = User::find(1)->phone;
+//
+//    $user = Phone::find(2)->user;
+
+//    return  $user;
+    $data = User::all();
+//    dd($data);
+    return view('welcome',compact('data'));
 });
 Route::resource("/student", StudentController::class);
