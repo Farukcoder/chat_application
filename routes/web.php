@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Models\User;
 use App\Models\Phone;
+use App\Models\Post;
+use App\Models\Comment;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +25,10 @@ Route::get('/', function () {
 //    return  $user;
     $data = User::all();
 //    dd($data);
-    return view('welcome',compact('data'));
+    $post = Post::with('comments')->get();
+
+//    return  $data;
+
+    return view('welcome',compact('data','post'));
 });
 Route::resource("/student", StudentController::class);
