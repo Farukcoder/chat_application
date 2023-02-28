@@ -25,10 +25,11 @@ Route::get('/', function () {
 //    return  $user;
     $data = User::all();
 //    dd($data);
-    $post = Post::with('comments')->get();
+//    $post = Post::with('comments')->get();
+    $posts = Post::with('categories')->get();
 
-//    return  $data;
+    return  $data;
 
-    return view('welcome',compact('data','post'));
+    return view('welcome',compact('data','$posts'));
 });
 Route::resource("/student", StudentController::class);
