@@ -23,13 +23,14 @@ Route::get('/', function () {
 //    $user = Phone::find(2)->user;
 
 //    return  $user;
-    $data = User::all();
+//    $data = User::all();
 //    dd($data);
-//    $post = Post::with('comments')->get();
-    $posts = Post::with('categories')->get();
+//    $post = Post::all();
+//    return  $post;
+    $data = Post::with('categoris')->get();
 
-    return  $data;
+//    return  $posts;
 
-    return view('welcome',compact('data','$posts'));
+    return view('welcome',compact('data'));
 });
 Route::resource("/student", StudentController::class);
