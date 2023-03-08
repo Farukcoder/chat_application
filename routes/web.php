@@ -1,11 +1,10 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentController;
-use App\Models\User;
-use App\Models\Phone;
+use App\Models\Category;
 use App\Models\Post;
-use App\Models\Comment;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,19 +17,17 @@ use App\Models\Comment;
 */
 
 Route::get('/', function () {
-//    $phone = User::find(1)->phone;
-//
-//    $user = Phone::find(2)->user;
-
-//    return  $user;
-//    $data = User::all();
-//    dd($data);
-//    $post = Post::all();
-//    return  $post;
-    $data = Post::with('categoris')->get();
-
-//    return  $posts;
-
-    return view('welcome',compact('data'));
+    return view('welcome');
 });
-Route::resource("/student", StudentController::class);
+
+Route::get('/dashboard', function () {
+    return view('dashboard')->with('data','post');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
