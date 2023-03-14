@@ -24,6 +24,9 @@ Route::get('/', function () {
 Route::get('/live_chat', function () {
     return view('live-chat');
 });
+Route::get('/multi_select', function () {
+    return view('multi_select');
+});
 
 Route::post('/send-message',function (Request $request){
     event(new Message($request->username, $request->message));

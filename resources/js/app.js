@@ -35,5 +35,5 @@ $(document).ready(function (){
 window.Echo.channel('chat')
     .listen('.message',(e)=>{
         $('#messages').append('<li class="d-flex justify-content-between mb-4"><img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar" class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60"><div class="card"><div class="card-header d-flex justify-content-between p-3"><p class="fw-bold mb-0">'+ e.username +'</p><p class="text-muted small mb-0"><i class="far fa-clock"></i></p></div><div class="card-body"><p class="mb-0">'+ e.message +'</p></div></div></li>');
-        $('#message').val();
+        $('#message').val('');
     });
